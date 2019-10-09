@@ -1,6 +1,25 @@
-// TODO: define polyfill for `Object.is(..)`
+Object.is = function (a, b) {
+  if (typeof a !== typeof b) {
+    return false;
+  }
 
+  // numbers, including -0 and NaN
+  if (typeof a === 'number') {
+    // test NaN (without using isNaN(), per the exercise)
+    if (a !== a && b !== b) {
+      return true;
+    }
+    // test potential -0s
+    if (a === 0 && b === 0) {
+      // Infinity and -Infinity are the only numbers we can divide by 0. Dividing by -0 switches the sign
+      // e.g. Infinity / -0 === -Infinity
+      return Infinity / a === Infinity / b;
+    }
+  }
 
+  // strings, objects, bools, symbols, and undefined
+  return a === b;
+};
 
 // tests:
 console.log(Object.is(42,42) === true);
