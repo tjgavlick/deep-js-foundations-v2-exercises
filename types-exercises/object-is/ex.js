@@ -6,14 +6,16 @@ Object.is = function (a, b) {
   // numbers, including -0 and NaN
   if (typeof a === 'number') {
     // test NaN (without using isNaN(), per the exercise)
+    // NaN is the only number in js that isn't equal to itself, per IEEE 754
     if (a !== a && b !== b) {
       return true;
     }
     // test potential -0s
     if (a === 0 && b === 0) {
-      // Infinity and -Infinity are the only numbers we can divide by 0. Dividing by -0 switches the sign
-      // e.g. Infinity / -0 === -Infinity
-      return Infinity / a === Infinity / b;
+      // dividing by zero in js does not throw a division by zero error. Instead, it produces
+      // Infinity. Dividing by -0 produces -Infinity, which is the only way to distinguish 0
+      // and -0
+      return 1 / a === 1 / b;
     }
   }
 
