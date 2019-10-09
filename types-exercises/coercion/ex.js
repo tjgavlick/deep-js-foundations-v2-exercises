@@ -1,9 +1,8 @@
 function isValidName(name) {
-  if (typeof name !== 'string') {
-    return false;
+  if (typeof name === 'string' && name.trim().length >= 3) {
+    return true;
   }
-  name = name.trim();
-  return name.length >= 3;
+  return false;
 }
 
 
