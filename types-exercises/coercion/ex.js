@@ -28,7 +28,7 @@ function hoursAttended(attended, length) {
   }
 
   // args must be whole numbers
-  if (attended !== parseInt(attended) || length !== parseInt(length)) {
+  if (!Number.isInteger(attended) || !Number.isInteger(length)) {
     return false;
   }
 
