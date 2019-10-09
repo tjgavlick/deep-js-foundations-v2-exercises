@@ -1,10 +1,6 @@
 Object.is = function (a, b) {
-  if (typeof a !== typeof b) {
-    return false;
-  }
-
   // numbers, including -0 and NaN
-  if (typeof a === 'number') {
+  if (typeof a === 'number' && typeof b === 'number') {
     // test NaN (without using isNaN(), per the exercise)
     // NaN is the only number in js that isn't equal to itself, per IEEE 754
     if (a !== a && b !== b) {
