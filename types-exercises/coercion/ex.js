@@ -1,5 +1,46 @@
-// TODO: write the validation functions
+function isValidName(name) {
+  if (typeof name !== 'string') {
+    return false;
+  }
+  name = name.trim();
+  return name.length >= 3;
+}
 
+
+function hoursAttended(attended, length) {
+  // only strings and numbers allowed
+  if ((typeof attended !== 'number' && typeof attended !== 'string') ||
+      (typeof length !== 'number' && typeof length !== 'string')) {
+    return false;
+  }
+
+  // the empty string is not a valid number for our purposes, even though it coerces to one
+  if ((typeof attended === 'string' && attended === '') ||
+      (typeof length === 'string' && length === '')) {
+    return false;
+  }
+
+  attended = Number(attended);
+  length = Number(length);
+
+  // args must be 0 or higher
+  if (attended < 0 || length < 0) {
+    return false;
+  }
+
+  // args must be whole numbers
+  if (attended !== parseInt(attended) || length !== parseInt(length)) {
+    return false;
+  }
+
+  // `attended` cannot exceed `length`
+  if (attended > length) {
+    return false;
+  }
+
+  // all failure cases passed
+  return true;
+}
 
 
 // tests:
