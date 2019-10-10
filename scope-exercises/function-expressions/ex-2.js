@@ -22,7 +22,8 @@ function paidStudentsToEnroll() {
 }
 
 function remindUnpaid(recordIds) {
-	let unpaidStudentIds = studentRecords
+	let unpaidStudentIds = recordIds
+		.map(id => studentRecords.find(record => record.id == id))
 		.filter(record => !record.paid && currentEnrollment.indexOf(record.id) >= 0)
 		.map(record => record.id);
 	printRecords(unpaidStudentIds);
