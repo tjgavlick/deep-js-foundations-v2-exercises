@@ -1,13 +1,35 @@
 function printRecords(recordIds) {
-	// TODO
+	records = studentRecords.filter(function matchesIdList(record) {
+		return recordIds.indexOf(record.id) >= 0;
+	}).sort(function sortRecordsByName(a, b) {
+		if (a.name < b.name) {
+			return -1;
+		} else if (a.name > b.name) {
+			return 1;
+		}
+		return 0;
+	});
+	for (let record of records) {
+		console.log(`${record.name} (${record.id}): ${record.paid ? 'Paid' : 'Not Paid'}`);
+	}
 }
 
 function paidStudentsToEnroll() {
-	// TODO
+	let studentsToEnroll = studentRecords.filter(function isPaidAndUnenrolled(record) {
+		return record.paid === true && currentEnrollment.indexOf(record.id) == -1;
+	}).map(function getId(record) {
+		return record.id;
+	});
+	return [...studentsToEnroll, ...currentEnrollment];
 }
 
 function remindUnpaid(recordIds) {
-	// TODO
+	let unpaidStudentIds = studentRecords.filter(function isUnpaid(record) {
+		return !record.paid && currentEnrollment.indexOf(record.id) >= 0;
+	}).map(function getId(record) {
+		return record.id;
+	});
+	printRecords(unpaidStudentIds);
 }
 
 
