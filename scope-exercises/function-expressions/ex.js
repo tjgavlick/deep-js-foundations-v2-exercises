@@ -18,7 +18,7 @@ function sortRecordsByName(a, b) {
 }
 
 function isPaidAndUnenrolled(record) {
-	return record.paid === true && currentEnrollment.indexOf(record.id) == -1;
+	return record.paid === true && currentEnrollment.includes(record.id);
 }
 
 function isUnpaid(record) {

@@ -1,6 +1,6 @@
 function printRecords(recordIds) {
 	records = studentRecords
-		.filter(record => recordIds.indexOf(record.id) >= 0)
+		.filter(record => recordIds.includes(record.id))
 		.sort((a, b) => {
 			if (a.name < b.name) {
 				return -1;
@@ -16,7 +16,7 @@ function printRecords(recordIds) {
 
 function paidStudentsToEnroll() {
 	let studentsToEnroll = studentRecords
-		.filter(record => record.paid === true && currentEnrollment.indexOf(record.id) == -1)
+		.filter(record => record.paid === true && currentEnrollment.includes(record.id))
 		.map(record => record.id);
 	return [...studentsToEnroll, ...currentEnrollment];
 }
@@ -24,7 +24,7 @@ function paidStudentsToEnroll() {
 function remindUnpaid(recordIds) {
 	let unpaidStudentIds = recordIds
 		.map(id => studentRecords.find(record => record.id == id))
-		.filter(record => !record.paid && currentEnrollment.indexOf(record.id) >= 0)
+		.filter(record => !record.paid && currentEnrollment.includes(record.id))
 		.map(record => record.id);
 	printRecords(unpaidStudentIds);
 }
