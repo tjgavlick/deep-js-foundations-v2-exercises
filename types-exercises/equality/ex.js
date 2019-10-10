@@ -22,7 +22,7 @@ function testLooseEquality(a, b) {
 
   // null should be equal to only null or undefined. == matches null to both null and undefined
   if (a == null && b == null) {
-    return a == b;
+    return true;
   } else if (a == null || b == null) {
     return false;
   }
@@ -31,7 +31,8 @@ function testLooseEquality(a, b) {
   if (
     (typeof a == 'string' && a.trim() === '') ||
     (typeof b === 'string' && b.trim() === '') ||
-    (typeof a == 'boolean' || typeof b == 'boolean')
+    typeof a == 'boolean' ||
+    typeof b == 'boolean'
   ) {
     return a === b;
   }
