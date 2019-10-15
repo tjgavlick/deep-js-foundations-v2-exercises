@@ -16,7 +16,7 @@ class Helpers {
 
 class Workshop extends Helpers {
 	constructor() {
-		super()
+		super();
 		this.currentEnrollment = [];
 		this.studentRecords = [];
 	}
